@@ -1,0 +1,96 @@
+/* Core Layout Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #f9f9f9;
+}
+
+/* 1. Hide the checkbox off-screen safely */
+.toggle-checkbox {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    opacity: 0;
+}
+
+/* 2. Style the Box you click */
+.toggle-box {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 100;
+    background-color: #333;
+    color: #fff;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 4px;
+    user-select: none;
+    /* Transition applied to 'left' so it moves smoothly with the layout */
+    transition: background-color 0.2s ease, left 0.3s ease-in-out;
+}
+
+.toggle-box:hover {
+    background-color: #555;
+}
+
+/* 3. Style the Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Width is 250px, starts completely hidden */
+    width: 250px;
+    height: 100vh;
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 80px 20px 20px 20px;
+    transition: left 0.3s ease-in-out;
+    z-index: 50;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.sidebar ul li a {
+    display: block;
+    color: #bbb;
+    text-decoration: none;
+    padding: 10px 0;
+}
+
+/* 4. Main Content Area (With Push Transition) */
+.content {
+    padding: 80px 40px;
+    position: relative;
+    left: 0;
+    /* Crucial: Must match the timing and easing of the sidebar slide */
+    transition: left 0.3s ease-in-out; 
+}
+
+
+/* ==========================================================
+   THE PUSH MECHANICS
+   ========================================================== */
+
+/* Slide the Sidebar in */
+.toggle-checkbox:checked ~ .sidebar {
+    left: 0;
+}
+
+/* Move the Button over so it stays accessible */
+.toggle-checkbox:checked ~ .toggle-box {
+    background-color: #ff4757;
+    left: 270px; /* 250px (sidebar width) + 20px padding */
+}
+
+/* Push the Main Content to the right by exactly the width of the sidebar */
+.toggle-checkbox:checked ~ .content {
+    left: 250px;
+}
