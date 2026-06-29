@@ -8,10 +8,11 @@
 
 body {
     overflow-x: hidden;
-    background-color: #f9f9f9;
+    color: #000000;
+    background-color: #999991;
 }
 
-/* 1. Hide the checkbox off-screen safely */
+/* 1. Hide the checkbox off-screen safely, sort of necessary for Firefox */
 .toggle-checkbox {
     position: absolute;
     top: -9999px;
@@ -33,6 +34,10 @@ body {
     user-select: none;
     /* Transition applied to 'left' so it moves smoothly with the layout */
     transition: background-color 0.2s ease, left 0.3s ease-in-out;
+}
+
+.LinkDescription {
+    font:  10px "Times New Roman", sans-serif;
 }
 
 .toggle-box:hover {
@@ -67,7 +72,7 @@ body {
 
 /* 4. Main Content Area (With Push Transition) */
 .content {
-    padding: 80px 40px;
+    padding: 80px 20px;
     position: relative;
     left: 0;
     /* Crucial: Must match the timing and easing of the sidebar slide */
