@@ -80,10 +80,6 @@ body {
 }
 
 
-/* ==========================================================
-   THE PUSH MECHANICS
-   ========================================================== */
-
 /* Slide the Sidebar in */
 .toggle-checkbox:checked ~ .sidebar {
     left: 0;
@@ -98,4 +94,35 @@ body {
 /* Push the Main Content to the right by exactly the width of the sidebar */
 .toggle-checkbox:checked ~ .content {
     left: 250px;
+}
+
+
+
+.DescriptorSeperator {
+    border: none;               /* Removes the default ugly border */
+    height: 2px;                /* Makes the line 2 pixels thick */
+    background-color: #333333;  /* Sets the line color */
+    width: 100%;                /* Spans the full width of its container */
+    margin: 20px 0;             /* Adds space above and below the line */
+}
+
+
+.tldr {
+    text-decoration: none; /* Removes the underline */
+    color: black;        /* Removes color text*/
+    display: block;
+    max-width: 60%;
+    width: 60%;           /* Takes up the middle 60% */
+    margin: 0 auto;       /* Spreads the remaining 40% equally (20% left, 20% right) */
+    text-align: center;   /* Centers the text inside the 60% box */
+    max-height: 20%;
+}
+
+.tldrphoto {
+    max-width: 100%;        /* Prevents the photo from ever spilling out of the .tldr box */
+    max-height: 300px;      /* Use a fixed unit (px or rem) for height limits instead of % */
+    width: auto;            /* Keeps the photo's aspect ratio perfect */
+    height: auto;           /* Safely scales down dynamically */
+    display: block;         /* Eliminates default inline spacing bugs */
+    margin: 10px auto;      /* Centers the photo inside the link box */
 }

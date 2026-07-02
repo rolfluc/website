@@ -1,0 +1,71 @@
+/* Center-justifies the entire page layout */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: #999991;
+    color: #333;
+}
+
+/* Container to keep content readable on wide screens */
+.article-container {
+    max-width: 800px;
+    width: 100%;
+    position: relative; /* Allows absolute positioning for the back link */
+    padding-top: 40px; /* Makes room for the back link */
+}
+
+/* Positions the back link in the top-left of the container */
+.back-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-decoration: none;
+    color: #0066cc;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Header Style */
+.entry-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #111;
+}
+
+/* TL;DR / Blurb Style (Distinct from header and body) */
+.tldr-blurb {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #555;
+    background-color: #eaeaea;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+    border-left: 5px solid #0066cc;
+}
+
+/* Photo Slot Style */
+.entry-photo {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Body Content Style */
+.body-text {
+    font-size: 1.1rem;
+    text-align: justify; /* Keeps paragraphs clean, or use 'center' if preferred */
+    margin-bottom: 20px;
+    color: #222;
+}
