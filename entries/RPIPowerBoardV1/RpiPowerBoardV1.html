@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../entry.css">
+    <title>RPI Power Board V1</title>
+</head>
+<body>
+
+    <div class="article-container">
+        
+        <a href="../../index.html" class="back-link">&larr; Back to Index</a>
+
+        <h1 class="entry-title">RPI Power Board V1</h1>
+
+        <div class="tldr-blurb">
+            As a first pass, the goal here was to ensure fitment, rough operations, and suss out any issues with the board or design. The goal here is to be a Rev1, for a future Rev2, but confirm the battery charging, load switch, and board fits perfectly with the Raspberry Pi 2W.  The board was designed to have a physical cutoff switch, and a holder for a 14550 (AA) sized cell, with a few side mounted LEDs for status, and to mount directly using the top 6 pins to deliver power through the header of RPI 2W. Additionally, the charger was designed such that if the cell began to degrade, or a near-dead cell would be inserted, it would attempt to trickle charge until a safe level was attained and have full battery detection while maintaining full battery, all of which charged over USB. Overall project can be found in this <a href="https://github.com/rolfluc/TimeLapseCamera">git repo</a>,  under the "EE" folder. 
+        </div>
+        <p class="body-text">
+            This device uses a series of hardware solutions in order to provide a safe operating environment for the battery. Starting with a load switch to disable any loads from consuming the battery itself: it is fed through a chain of other devices to end up at the overall turn-on signal. The chip immediately before this, is the voltage supervisor chip, which was chosen to drive a signal at 3.0V, with a 100mV hysteresis. No tuning of timing was done for hysteresis to account for transient loads, because in this scenario if it ever drops below the expected voltage, thrashing the on/off may not be the worst scenario for the Pi. And yet preceeding the battery protection chip, is the thermostat. This was not fully tested on this board, because a WSON chip was chosen, and the desire was to ensure it got close to the battery, but not explicitly touch it. Below is a picture of such a scenario, which the argument here being it likely needs to be higher in order to capture the heat of the battery effectively. 
+        </p>
+        <img src="SensorToBattery.png" alt="Sensor" class="entry-photo">
+        <p class="body-text">
+            Now for the unfortunate parts. The 3D modeling of the battery clasps, and the battery lead to the WSON being too far away from the battery to provide a useful thermal reading. Additionally since there was no stencil purchased for this board, and it was hand assembled, it was soldered imporperly and was not used in the chain to detect proper functionality of the thermostat functionality. It was approximately 1.2mm away, when the desire was close to 300μm. The battery clasps imported from the manufacturer had a recomended size, and placement, but this lead to some improper results from the AA battery (used as the standin for lithium ion variant). The AA did not actually provide electrical content to both clasps, so this needs to be pulled in approximately 4mm. Somewhere between the symbol from the manufacturer, and the choosing of the schematic symbol, the common pin for the SPDT was incorrect. It was easily bodged to continue testing, but did need to be changed for Rev2.
+        </p>
+        <img src="BoardWithBattery.png" alt="mountedBattery" class="entry-photo">
+        <p class="body-text">
+            Some minor things are being planned for Rev2. First, a functioning thermostat. Likely will choose a part that can be hand soldered to support this open source design, and a stencil not being required. Additionally, the larger part would actually increase the overall height to get closer to the battery. One other piece being planned, is likely a new part on the board to act as the step before the undervoltage lockout - an RTC. The original intent here is to setup a device for a time lapse camera, and as written the RPI 2W has no great way to selectively turn off rails or anything else like that. If an RTC with a settable-alarm can be used, the full device can be disabled for a period of time and woken up at a future time, meaning absolutely minimal power consumption between expected wakeups. Other things that will be fixed is actively testing on the current hardware to confirm proper electromechanical fixing of the tabs (or potentially the full abandonment and finding a pouch cell better suited for this), and better fitment of the external components to be more seemless.
+        </p>
+        <img src="Result.png" alt="Result" class="entry-photo">
+    </div>
+</body>
+</html>
