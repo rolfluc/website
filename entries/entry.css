@@ -69,3 +69,18 @@ body {
     margin-bottom: 20px;
     color: #222;
 }
+
+.sideBySide {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    gap: 10px;
+}
+
+.sideBySide img {
+    width: 50%;
+    height: auto;
+}
